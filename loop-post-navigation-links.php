@@ -1,13 +1,22 @@
 <?php
 /*
 Plugin Name: Loop Post Navigation Links
-Version: 1.0
+Version: 1.5
 Plugin URI: http://coffee2code.com/wp-plugins/loop-post-navigation-links
 Author: Scott Reilly
 Author URI: http://coffee2code.com
-Description: Adds next_or_loop_post_link() and previous_or_loop_post_link() template tags to loop back to the beginning/end post when at the end/beginning post single page.
+Description: Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
-Compatible with WordPress 2.0+, 2.1+, 2.2+, and 2.3+.
+next_or_loop_post_link() is identical to WordPress's next_post_link() in every way except when called on the last
+post in the navigation sequence, in which case it links back to the first post in the navigation sequence.
+
+previous_or_loop_post_link()` is identical to WordPress's `previous_post_link()` in every way except when called on
+the first post in the navigation sequence, in which case it links back to the last post in the navigation sequence.
+
+Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for
+visitors to continue reading.
+
+Compatible with WordPress 2.6+, 2.7+, 2.8+.
 
 =>> Read the accompanying readme.txt file for more information.  Also, visit the plugin's homepage
 =>> for more information and the latest updates
@@ -23,7 +32,7 @@ instead of previous_post_link(), in your single-post template (single.php).
 */
 
 /*
-Copyright (c) 2008 by Scott Reilly (aka coffee2code)
+Copyright (c) 2008-2009 by Scott Reilly (aka coffee2code)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
 files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, 
@@ -38,50 +47,28 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
-$c2c_find_last_post = false;
-$c2c_find_first_post = false;
+$c2c_loop_navigation_find = false;
 
-function next_or_loop_post_link($format='%link &raquo;', $link='%title', $in_same_cat = false, $excluded_categories = '') {
-	$post = get_next_post($in_same_cat, $excluded_categories);
-
-	// The only modification of next_post_link() -- get the first post if there isn't a legitimate next post
-	if ( !$post ) {
-		global $c2c_find_first_post;
-		$c2c_find_first_post = true;
-		$post = get_next_post($in_same_cat, $excluded_categories);
-		$c2c_find_first_post = false;
-	}
-
-	if ( !$post )
-		return;
-
-	$title = $post->post_title;
-
-	if ( empty($post->post_title) )
-		$title = __('Next Post');
-
-	$title = apply_filters('the_title', $title, $post);
-	$string = '<a href="'.get_permalink($post->ID).'">';
-	$link = str_replace('%title', $title, $link);
-	$link = $string . $link . '</a>';
-	$format = str_replace('%link', $link, $format);
-
-	echo $format;
+function next_or_loop_post_link( $format='%link &raquo;', $link='%title', $in_same_cat = false, $excluded_categories = '' ) {
+	adjacent_or_loop_post_link($format, $link, $in_same_cat, $excluded_categories, false);
 }
 
-function previous_or_loop_post_link($format='&laquo; %link', $link='%title', $in_same_cat = false, $excluded_categories = '') {
+function previous_or_loop_post_link( $format='&laquo; %link', $link='%title', $in_same_cat = false, $excluded_categories = '' ) {
+	adjacent_or_loop_post_link($format, $link, $in_same_cat, $excluded_categories, true);
+}
 
-	if ( is_attachment() )
+function adjacent_or_loop_post_link( $format, $link, $in_same_cat = false, $excluded_categories = '', $previous = true ) {
+	if ( $previous && is_attachment() )
 		$post = & get_post($GLOBALS['post']->post_parent);
 	else
-		$post = get_previous_post($in_same_cat, $excluded_categories);
+		$post = get_adjacent_post($in_same_cat, $excluded_categories, $previous);
 
-	// The only modification of previous_post_link() -- get the last post if there isn't a legitimate previous post
+	// The only modification of adjacent_post_link() -- get the last/first post if there isn't a legitimate previous/next post
 	if ( !$post ) {
-		global $c2c_find_last_post;
-		$c2c_find_last_post = true;
-		$post = get_previous_post($in_same_cat, $excluded_categories);
-		$c2c_find_last_post = false;
+		global $c2c_loop_navigation_find;
+		$c2c_loop_navigation_find = true;
+		$post = get_adjacent_post($in_same_cat, $excluded_categories, $previous);
+		$c2c_loop_navigation_find = false;
 	}
 
 	if ( !$post )
@@ -90,23 +77,26 @@ function previous_or_loop_post_link($format='&laquo; %link', $link='%title', $in
 	$title = $post->post_title;
 
 	if ( empty($post->post_title) )
-		$title = __('Previous Post');
+		$title = $previous ? __('Previous Post') : __('Next Post');
 
 	$title = apply_filters('the_title', $title, $post);
-	$string = '<a href="'.get_permalink($post->ID).'">';
+	$date = mysql2date(get_option('date_format'), $post->post_date);
+
+	$string = '<a href="'.get_permalink($post).'">';
 	$link = str_replace('%title', $title, $link);
-	$link = $pre . $string . $link . '</a>';
+	$link = str_replace('%date', $date, $link);
+	$link = $string . $link . '</a>';
 
 	$format = str_replace('%link', $link, $format);
 
-	echo $format;
+	$adjacent = $previous ? 'previous' : 'next';
+	echo apply_filters("{$adjacent}_or_loop_post_link", apply_filters("{$adjacent}_post_link", $format, $link), $format, $link);
 }
 
 function c2c_modify_nextprevious_post_where( $where ) {
 	// The incoming WHERE statement generated by WordPress is a condition for the date, relative to the current
-	//	post's date.  To find the post we want, we just need to get rid of that condition and retain the others.
-	global $c2c_find_last_post, $c2c_find_first_post;
-	if ( $c2c_find_last_post || $c2c_find_first_post )
+	//	post's date.  To find the post we want, we just need to get rid of that condition (which is the first) and retain the others.
+	if ( $GLOBALS['c2c_loop_navigation_find'] )
 		$where = preg_replace('/WHERE (.+) AND/imsU', 'WHERE', $where);
 	return $where;
 }
