@@ -3,9 +3,9 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, next_post_link, coffee2code
 Requires at least: 2.6
-Tested up to: 2.8.2
-Stable tag: 1.5
-Version: 1.5
+Tested up to: 2.9.1
+Stable tag: 1.5.1
+Version: 1.5.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -21,7 +21,7 @@ Useful for providing a looping link of posts, such as for a portfolio, or to con
 
 == Installation ==
 
-1. Unzip `loop-post-navigation-links.zip` inside the `/wp-content/plugins/` directory, or upload `loop-post-navigation-links.php` into `/wp-content/plugins/`
+1. Unzip `loop-post-navigation-links.zip` inside the `/wp-content/plugins/` directory (or install via the built-in WordPress plugin installer)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
 1. Use `next_or_loop_post_link()` template tag instead of `next_post_link()`, and/or `previous_or_loop_post_link()` template tag instead of `previous_post_link()`, in your single-post template (single.php).
 
@@ -59,6 +59,11 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 </div>`
 
 == Changelog ==
+
+= 1.5.1 =
+* Add PHPDoc documentation
+* Note compatibility with WP 2.9+
+* Update copyright date
 
 = 1.5 =
 * Added adjacent_or_loop_post_link() and have next_or_loop_post_link() and previous_or_post_link() simply deferring to it for core operation
