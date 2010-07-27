@@ -2,11 +2,11 @@
 /**
  * @package Loop_Post_Navigation_Links
  * @author Scott Reilly
- * @version 1.5.1
+ * @version 1.6
  */
 /*
 Plugin Name: Loop Post Navigation Links
-Version: 1.5.1
+Version: 1.6
 Plugin URI: http://coffee2code.com/wp-plugins/loop-post-navigation-links
 Author: Scott Reilly
 Author URI: http://coffee2code.com
@@ -21,14 +21,14 @@ the first post in the navigation sequence, in which case it links back to the la
 Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for
 visitors to continue reading.
 
-Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+.
+Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+.
 
 =>> Read the accompanying readme.txt file for more information.  Also, visit the plugin's homepage
 =>> for more information and the latest updates
 
 Installation:
 
-1. Download the file http://coffee2code.com/wp-plugins/loop-post-navigation-links.zip and unzip it into your 
+1. Download the file http://coffee2code.com/wp-plugins/loop-post-navigation-links.zip and unzip it into your
 /wp-content/plugins/ directory (or install via the built-in WordPress plugin installer).
 2. Activate the plugin through the 'Plugins' admin menu in WordPress
 3. Use next_or_loop_post_link() template tag instead of next_post_link(), and/or previous_or_loop_post_link() template tag
@@ -39,9 +39,9 @@ instead of previous_post_link(), in your single-post template (single.php).
 /*
 Copyright (c) 2008-2010 by Scott Reilly (aka coffee2code)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation 
-files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, 
-modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
 Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
@@ -93,7 +93,7 @@ function previous_or_loop_post_link( $format='&laquo; %link', $link='%title', $i
  * @return void
  */
 function adjacent_or_loop_post_link( $format, $link, $in_same_cat = false, $excluded_categories = '', $previous = true ) {
-	if ( $previous && is_attachment() )
+	if ( $previous && is_attachment() && is_object( $GLOBALS['post'] ) )
 		$post = & get_post($GLOBALS['post']->post_parent);
 	else
 		$post = get_adjacent_post($in_same_cat, $excluded_categories, $previous);
@@ -102,11 +102,11 @@ function adjacent_or_loop_post_link( $format, $link, $in_same_cat = false, $excl
 	if ( !$post ) {
 		global $c2c_loop_navigation_find;
 		$c2c_loop_navigation_find = true;
-		$post = get_adjacent_post($in_same_cat, $excluded_categories, $previous);
+		$post = get_adjacent_post( $in_same_cat, $excluded_categories, $previous );
 		$c2c_loop_navigation_find = false;
 	}
 
-	if ( !$post )
+	if ( empty( $post ) )
 		return;
 
 	$title = $post->post_title;
@@ -114,10 +114,11 @@ function adjacent_or_loop_post_link( $format, $link, $in_same_cat = false, $excl
 	if ( empty($post->post_title) )
 		$title = $previous ? __('Previous Post') : __('Next Post');
 
-	$title = apply_filters('the_title', $title, $post);
+	$title = apply_filters('the_title', $title, $post->ID);
 	$date = mysql2date(get_option('date_format'), $post->post_date);
+	$rel = $previous ? 'prev' : 'next';
 
-	$string = '<a href="'.get_permalink($post).'">';
+	$string = '<a href="'.get_permalink($post).'" rel="'.$rel.'">';
 	$link = str_replace('%title', $title, $link);
 	$link = str_replace('%date', $date, $link);
 	$link = $string . $link . '</a>';
