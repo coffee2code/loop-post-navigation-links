@@ -3,9 +3,9 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, next_post_link, coffee2code
 Requires at least: 2.6
-Tested up to: 3.0.1
-Stable tag: 1.6
-Version: 1.6
+Tested up to: 3.2
+Stable tag: 1.6.1
+Version: 1.6.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -19,6 +19,8 @@ The function `next_or_loop_post_link()` is identical to WordPress's `next_post_l
 The function `previous_or_loop_post_link()` is identical to WordPress's `previous_post_link()` in every way except when called on the first post in the navigation sequence, in which case it links back to the last post in the navigation sequence.
 
 Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for visitors to continue reading.
+
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -65,6 +67,12 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 
 == Changelog ==
 
+= 1.6.1 =
+* Note compatibility through WP 3.2+
+* Update copyright date (2011)
+* Minor code formatting (spacing)
+* Add plugin homepage and author links to description in readme.txt
+
 = 1.6 =
 * Add rel= attribute to links
 * Wrap all functions in if(!function_exists()) check
@@ -97,6 +105,9 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 
 
 == Upgrade Notice ==
+
+= 1.6.1 =
+Trivial update: noted compatibility through WP 3.1+ and updated copyright date
 
 = 1.6 =
 Minor update. Highlights: adds 'rel=' attribute to links; minor tweaks; verified WP 3.0 compatibility.
