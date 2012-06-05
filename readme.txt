@@ -2,10 +2,12 @@
 Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, next_post_link, coffee2code
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 2.6
-Tested up to: 3.3.1
-Stable tag: 1.6.2
-Version: 1.6.2
+Tested up to: 3.4
+Stable tag: 1.6.3
+Version: 1.6.3
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -67,6 +69,12 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 
 == Changelog ==
 
+= 1.6.3 =
+* Re-license as GPLv2 or later (from X11)
+* Add 'License' and 'License URI' header tags to readme.txt and plugin file
+* Remove ending PHP close tag
+* Note compatibility through WP 3.4+
+
 = 1.6.2 =
 * Note compatibility through WP 3.3+
 * Add link to plugin directory page to readme.txt
@@ -110,6 +118,9 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 
 
 == Upgrade Notice ==
+
+= 1.6.3 =
+Trivial update: noted compatibility through WP 3.4+; explicitly stated license
 
 = 1.6.2 =
 Trivial update: noted compatibility through WP 3.3+ and updated copyright date
