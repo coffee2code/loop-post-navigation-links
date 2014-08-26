@@ -5,8 +5,8 @@ Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, n
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 3.8
-Stable tag: 2.5
+Tested up to: 4.0
+Stable tag: 2.5.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -21,7 +21,7 @@ The function `c2c_previous_or_loop_post_link()` is identical to WordPress's `pre
 
 Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for visitors to continue reading.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](http://wordpress.org/plugins/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](https://wordpress.org/plugins/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -114,6 +114,14 @@ Do:
 
 
 == Changelog ==
+
+= 2.5.1 (2014-08-25) =
+* Minor plugin header reformatting
+* Minor documentation syncing between c2c_get_adjacent_or_loop_post_link() and get_adjacent_post_link()
+* Minor code reformatting (spacing, bracing)
+* Change documentation links to wp.org to be https
+* Note compatibility through WP 4.0+
+* Add plugin icon
 
 = 2.5 (2013-12-31) =
 * Support looping through any taxonomy (not just categories)
@@ -209,6 +217,9 @@ Do:
 
 
 == Upgrade Notice ==
+
+= 2.5.1 =
+Trivial update: noted compatibility through WP 4.0+; added plugin icon.
 
 = 2.5 =
 Major update: added support for navigating by taxonomy; added non-echoing versions of functions, and more filters; added unit tests; noted compatibility through WP 3.8+; dropped compatibility with WP older than 3.6
