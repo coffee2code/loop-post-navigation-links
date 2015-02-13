@@ -5,8 +5,8 @@ Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, n
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 2.5.1
+Tested up to: 4.1
+Stable tag: 2.5.2
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -115,6 +115,10 @@ Do:
 
 == Changelog ==
 
+= 2.5.2 (2015-02-12) =
+* Note compatibility through WP 4.1+
+* Update copyright date (2015)
+
 = 2.5.1 (2014-08-25) =
 * Minor plugin header reformatting
 * Minor documentation syncing between c2c_get_adjacent_or_loop_post_link() and get_adjacent_post_link()
@@ -217,6 +221,9 @@ Do:
 
 
 == Upgrade Notice ==
+
+= 2.5.2 =
+Trivial update: noted compatibility through WP 4.1+ and updated copyright date (2015)
 
 = 2.5.1 =
 Trivial update: noted compatibility through WP 4.0+; added plugin icon.
