@@ -16,7 +16,7 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 	}
 
 
-	/**
+	/*
 	 *
 	 * HELPER FUNCTIONS
 	 *
@@ -27,7 +27,10 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post A', 'post_date' => '2013-12-01 15:01:02' ) );
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post B', 'post_date' => '2013-12-02 15:01:02' ) );
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post C', 'post_date' => '2013-12-03 15:01:02' ) );
+
+		// A draft, which should never appear.
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post D', 'post_date' => '2013-12-04 15:01:02', 'post_status' => 'draft' ) );
+
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post E', 'post_date' => '2013-12-05 15:01:02', 'post_type' => 'abc' ) );
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post F', 'post_date' => '2013-12-06 15:01:02' ) );
 		return $posts;
@@ -106,19 +109,30 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 	}
 
 
-	/**
+	/*
 	 *
 	 * TESTS
 	 *
 	 */
 
 
+	function test_plugin_version() {
+		$this->assertEquals( '2.6', c2c_LoopPostNavigationLinks::version() );
+	}
+
+	function test_class_is_available() {
+		$this->assertTrue( class_exists( 'c2c_LoopPostNavigationLinks' ) );
+	}
+
 	function test_c2c_next_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 1 ), $this->get_echo_output( 0 ) );
 		$this->assertEquals( $this->expected( 2 ), $this->get_echo_output( 1 ) );
 		$this->assertEquals( $this->expected( 5 ), $this->get_echo_output( 2 ) );
-		$this->assertEquals( $this->expected( 4 ), $this->get_echo_output( 4 ) );
 		$this->assertEquals( $this->expected( 0 ), $this->get_echo_output( 5 ) );
+	}
+
+	function test_c2c_next_or_loop_post_link_with_non_looping_post() {
+		$this->assertEmpty( $this->get_echo_output( 4 ) );
 	}
 
 	function test_c2c_previous_or_loop_post_link() {
@@ -126,7 +140,52 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( $this->expected( 0, false ), $this->get_echo_output( 1, false ) );
 		$this->assertEquals( $this->expected( 1, false ), $this->get_echo_output( 2, false ) );
 		$this->assertEquals( $this->expected( 2, false ), $this->get_echo_output( 5, false ) );
-		$this->assertEquals( $this->expected( 4, false ), $this->get_echo_output( 4, false ) );
+	}
+
+	function test_c2c_previous_or_loop_post_link_with_non_looping_post() {
+		$this->assertEmpty( $this->get_echo_output( 4, false ) );
+	}
+
+	function test_c2c_get_next_or_loop_post() {
+		$this->load_post( $this->posts[0] );
+		$next = c2c_get_next_or_loop_post();
+		$this->assertTrue( is_a( $next, 'WP_Post' ) );
+		$this->assertEquals( $this->posts[1], $next->ID );
+
+		$this->load_post( $this->posts[1] );
+		$this->assertEquals( $this->posts[2], c2c_get_next_or_loop_post()->ID );
+
+		$this->load_post( $this->posts[2] );
+		$this->assertEquals( $this->posts[5], c2c_get_next_or_loop_post()->ID );
+
+		$this->load_post( $this->posts[5] );
+		$this->assertEquals( $this->posts[0], c2c_get_next_or_loop_post()->ID );
+	}
+
+	function test_c2c_get_next_or_loop_post_with_non_looping_post() {
+		$this->load_post( $this->posts[4] );
+		$this->assertNull( c2c_get_next_or_loop_post() );
+	}
+
+	function test_c2c_get_previous_or_loop_post() {
+		$this->load_post( $this->posts[0] );
+		$next = c2c_get_previous_or_loop_post();
+		$this->assertTrue( is_a( $next, 'WP_Post' ) );
+		$this->assertEquals( $this->posts[5], $next->ID );
+
+		$this->load_post( $this->posts[1] );
+		$this->assertEquals( $this->posts[0], c2c_get_previous_or_loop_post()->ID );
+
+		$this->load_post( $this->posts[2] );
+		$this->assertEquals( $this->posts[1], c2c_get_previous_or_loop_post()->ID );
+
+		$this->load_post( $this->posts[5] );
+		$this->assertEquals( $this->posts[2], c2c_get_previous_or_loop_post()->ID );
+	}
+
+	function test_c2c_get_previous_or_loop_post_with_non_looping_post() {
+		$this->load_post( $this->posts[4] );
+		$this->assertNull( c2c_get_previous_or_loop_post() );
 	}
 
 	function test_arg_format() {

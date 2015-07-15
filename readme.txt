@@ -5,8 +5,8 @@ Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, n
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 2.5.2
+Tested up to: 4.3
+Stable tag: 2.6
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -20,6 +20,8 @@ The function `c2c_next_or_loop_post_link()` is identical to WordPress's `next_po
 The function `c2c_previous_or_loop_post_link()` is identical to WordPress's `previous_post_link()` in every way except when called on the first post in the navigation sequence, in which case it links back to the last post in the navigation sequence.
 
 Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for visitors to continue reading.
+
+If you are interested in getting the post itself and not just a link to the post, you can use the `c2c_get_next_or_loop_post()` and `c2c_get_previous_or_loop_post()` functions.
 
 Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](https://wordpress.org/plugins/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
 
@@ -49,6 +51,12 @@ Like WordPress's `previous_post_link()`, this function displays a link to the pr
 * `function c2c_get_previous_or_loop_post_link( $format='&laquo; %link', $link='%title', $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
 Like `c2c_get_previous_or_loop_post_link(), but returns the value without echoing it.
 
+* `function c2c_get_next_or_loop_post( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
+Like WordPress's `get_adjacent_post()` when used to find the next post, except when on the last post in the sequence this function will return the first post in the sequence, creating a circular loop.
+
+* `function c2c_get_previous_or_loop_post( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
+Like WordPress's `get_adjacent_post()` when used to find the previous post, except when on the first post in the sequence this function will return the last post in the sequence, creating a circular loop.
+
 = Arguments =
 
 * `$format`
@@ -63,6 +71,8 @@ Like `c2c_get_previous_or_loop_post_link(), but returns the value without echoin
 * `$excluded_terms`
 (optional) An array or comma-separated string of category or term IDs to which posts cannot belong.
 
+* `$taxonomy`
+(optional) Taxonomy, if $in_same_term is true. Default 'category'.
 
 == Examples ==
 
@@ -74,7 +84,7 @@ Like `c2c_get_previous_or_loop_post_link(), but returns the value without echoin
 
 == Filters ==
 
-The plugin is further customizable via eight hooks. Typically, this type of customization would be put into your active theme's functions.php file or used by another plugin.
+The plugin is further customizable via eleven hooks. Typically, this type of customization would be put into your active theme's functions.php file or used by another plugin.
 
 = c2c_previous_or_loop_post_link_output, c2c_next_or_loop_post_link_output (filters) =
 
@@ -94,7 +104,7 @@ Example:
 
 The 'c2c_previous_or_loop_post_link_get' and 'c2c_next_or_loop_post_link_get' filters allow you to customize the link markups generated for previous and next looping links, respectively, but in the non-echoing functions.
 
-= c2c_previous_or_loop_post_link, c2c_next_or_loop_post_link (actions), c2c_get_previous_or_loop_post_link, c2c_get_next_or_loop_post_link (filters), =
+= c2c_previous_or_loop_post_link, c2c_next_or_loop_post_link (actions), c2c_get_previous_or_loop_post_link, c2c_get_next_or_loop_post_link, c2c_get_adjacent_or_loop_post, c2c_get_previous_or_loop_post, c2c_get_previous_or_loop_post (actions) =
 
 The 'c2c_previous_or_loop_post_link' and 'c2c_next_or_loop_post_link' actions allow you to use an alternative approach to safely invoke `c2c_previous_or_loop_post_link()` and `c2c_next_or_loop_post_link()`, respectively, in such a way that if the plugin were deactivated or deleted, then your calls to the functions won't cause errors in your site. The 'c2c_get_previous_or_loop_post_link' and 'c2c_get_next_or_loop_post_link' filters do the same for the non-echoing `c2c_previous_or_loop_post_link()` and `c2c_next_or_loop_post_link()`.
 
@@ -115,9 +125,23 @@ Do:
 
 == Changelog ==
 
+= 2.6 (2015-07-14) =
+* Feature: Add new template tags for getting the adjacent or looped post object:
+  * `c2c_get_next_or_loop_post`
+  * `c2c_get_previous_or_loop_post`
+  * `c2c_get_adjacent_or_loop_post`
+* Bugfix: Prevent a link from being shown if the post loops back to itself or is a non-post post_type
+* Bugfix: Correctly invoke `c2c_adjacent_or_loop_post_link()` via `c2c_adjacent_or_loop_post_link` action hook
+* Change: Create class to encapsulate some logic and data, removing use of a global variable
+* Update: Add documentation for new template tags
+* Update: Add more unit tests
+* Update: Minor inline documentation improvements and fixes
+* Update: Note compatibility through WP 4.3+
+* Note: All functions deprecated since v2.0 will be removed in the next major version release
+
 = 2.5.2 (2015-02-12) =
-* Note compatibility through WP 4.1+
-* Update copyright date (2015)
+* Update: Note compatibility through WP 4.1+
+* Update: Extend copyright date (2015)
 
 = 2.5.1 (2014-08-25) =
 * Minor plugin header reformatting
@@ -221,6 +245,9 @@ Do:
 
 
 == Upgrade Notice ==
+
+= 2.6 =
+Recommended minor update: Added new template tags for getting the adjacent or looped post object; minor bug fixes; noted compatibility through WP 4.3+
 
 = 2.5.2 =
 Trivial update: noted compatibility through WP 4.1+ and updated copyright date (2015)
