@@ -1,28 +1,30 @@
 <?php
 
+defined( 'ABSPATH' ) or die();
+
 class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 
 	private static $posts = array();
 
-	function setUp() {
+	public function setUp() {
 		parent::setUp();
 		$this->posts = $this->create_posts();
 	}
 
-	function tearDown() {
+	public function tearDown() {
 		parent::tearDown();
 		foreach( array( 'c2c_next_or_loop_post_link_output', 'c2c_previous_or_loop_post_link_output') as $filter )
 			remove_filter( $filter, array( $this, 'filter_append' ) );
 	}
 
 
-	/*
-	 *
-	 * HELPER FUNCTIONS
-	 *
-	 */
+	//
+	//
+	// HELPER FUNCTIONS
+	//
+	//
 
-	function create_posts() {
+	protected function create_posts() {
 		$posts = array();
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post A', 'post_date' => '2013-12-01 15:01:02' ) );
 		$posts[] = $this->factory->post->create( array( 'post_title' => 'Post B', 'post_date' => '2013-12-02 15:01:02' ) );
@@ -41,14 +43,14 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 	 *
 	 * @param int $post_id Post ID.
 	 */
-	function load_post( $post_id ) {
+	protected function load_post( $post_id ) {
 		global $post;
 		$post = get_post( $post_id );
 		setup_postdata( $post );
 		return $post;
 	}
 
-	function get_echo_output( $index, $next = true, $args = array(), $via_filter = false ) {
+	protected function get_echo_output( $index, $next = true, $args = array(), $via_filter = false ) {
 		$post_id = $this->posts[ $index ];
 		$this->load_post( $post_id );
 
@@ -86,7 +88,7 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		return $out;
 	}
 
-	function expected( $index, $next = true ) {
+	protected function expected( $index, $next = true ) {
 		$post_id = $this->posts[ $index ];
 		$post = get_post( $post_id );
 
@@ -104,49 +106,49 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		return $str;
 	}
 
-	function filter_append( $text ) {
+	public function filter_append( $text ) {
 		return $text . '(extra)';
 	}
 
 
-	/*
-	 *
-	 * TESTS
-	 *
-	 */
+	//
+	//
+	// TESTS
+	//
+	//
 
 
-	function test_plugin_version() {
-		$this->assertEquals( '2.6', c2c_LoopPostNavigationLinks::version() );
+	public function test_plugin_version() {
+		$this->assertEquals( '2.6.1', c2c_LoopPostNavigationLinks::version() );
 	}
 
-	function test_class_is_available() {
+	public function test_class_is_available() {
 		$this->assertTrue( class_exists( 'c2c_LoopPostNavigationLinks' ) );
 	}
 
-	function test_c2c_next_or_loop_post_link() {
+	public function test_c2c_next_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 1 ), $this->get_echo_output( 0 ) );
 		$this->assertEquals( $this->expected( 2 ), $this->get_echo_output( 1 ) );
 		$this->assertEquals( $this->expected( 5 ), $this->get_echo_output( 2 ) );
 		$this->assertEquals( $this->expected( 0 ), $this->get_echo_output( 5 ) );
 	}
 
-	function test_c2c_next_or_loop_post_link_with_non_looping_post() {
+	public function test_c2c_next_or_loop_post_link_with_non_looping_post() {
 		$this->assertEmpty( $this->get_echo_output( 4 ) );
 	}
 
-	function test_c2c_previous_or_loop_post_link() {
+	public function test_c2c_previous_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 5, false ), $this->get_echo_output( 0, false ) );
 		$this->assertEquals( $this->expected( 0, false ), $this->get_echo_output( 1, false ) );
 		$this->assertEquals( $this->expected( 1, false ), $this->get_echo_output( 2, false ) );
 		$this->assertEquals( $this->expected( 2, false ), $this->get_echo_output( 5, false ) );
 	}
 
-	function test_c2c_previous_or_loop_post_link_with_non_looping_post() {
+	public function test_c2c_previous_or_loop_post_link_with_non_looping_post() {
 		$this->assertEmpty( $this->get_echo_output( 4, false ) );
 	}
 
-	function test_c2c_get_next_or_loop_post() {
+	public function test_c2c_get_next_or_loop_post() {
 		$this->load_post( $this->posts[0] );
 		$next = c2c_get_next_or_loop_post();
 		$this->assertTrue( is_a( $next, 'WP_Post' ) );
@@ -162,12 +164,12 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( $this->posts[0], c2c_get_next_or_loop_post()->ID );
 	}
 
-	function test_c2c_get_next_or_loop_post_with_non_looping_post() {
+	public function test_c2c_get_next_or_loop_post_with_non_looping_post() {
 		$this->load_post( $this->posts[4] );
 		$this->assertNull( c2c_get_next_or_loop_post() );
 	}
 
-	function test_c2c_get_previous_or_loop_post() {
+	public function test_c2c_get_previous_or_loop_post() {
 		$this->load_post( $this->posts[0] );
 		$next = c2c_get_previous_or_loop_post();
 		$this->assertTrue( is_a( $next, 'WP_Post' ) );
@@ -183,45 +185,45 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( $this->posts[2], c2c_get_previous_or_loop_post()->ID );
 	}
 
-	function test_c2c_get_previous_or_loop_post_with_non_looping_post() {
+	public function test_c2c_get_previous_or_loop_post_with_non_looping_post() {
 		$this->load_post( $this->posts[4] );
 		$this->assertNull( c2c_get_previous_or_loop_post() );
 	}
 
-	function test_arg_format() {
+	public function test_arg_format() {
 		$this->assertEquals( str_replace( '&raquo;', '->', $this->expected( 1 ) ), $this->get_echo_output( 0, true, array( 'format' => '%link ->' ) ) );
 		$this->assertEquals( str_replace( '&laquo;', '<-', $this->expected( 0, false ) ), $this->get_echo_output( 1, false, array( 'format' => '<- %link' ) ) );
 	}
 
-	function test_arg_link() {
+	public function test_arg_link() {
 		$this->assertEquals( str_replace( 'Post B', 'Post B December 2, 2013', $this->expected( 1 ) ), $this->get_echo_output( 0, true, array( 'link' => '%title %date' ) ) );
 		$this->assertEquals( str_replace( 'Post A', 'Post A December 1, 2013', $this->expected( 0, false ) ), $this->get_echo_output( 1, false, array( 'link' => '%title %date' ) ) );
 	}
 
-	function test_arg_in_same_term() {
+	public function test_arg_in_same_term() {
 		//TODO; yeah, i know
 	}
 
-	function test_arg_excluded_terms() {
+	public function test_arg_excluded_terms() {
 		//TODO; yeah, i know
 	}
 
-	function test_arg_taxonomy() {
+	public function test_arg_taxonomy() {
 		//TODO; yeah, i know
 	}
 
-	function test_filter_invocation() {
+	public function test_filter_invocation() {
 		$this->assertEquals( str_replace( 'Post B', 'Post B December 2, 2013', $this->expected( 1 ) ), $this->get_echo_output( 0, true, array( 'link' => '%title %date' ), true ) );
 		$this->assertEquals( str_replace( 'Post A', 'Post A December 1, 2013', $this->expected( 0, false ) ), $this->get_echo_output( 1, false, array( 'link' => '%title %date' ), true ) );
 	}
 
-	function test_filter_c2c_next_or_loop_post_link_output() {
+	public function test_filter_c2c_next_or_loop_post_link_output() {
 		add_filter( 'c2c_next_or_loop_post_link_output', array( $this, 'filter_append' ) );
 
 		$this->assertEquals( $this->expected( 1 ) . '(extra)', $this->get_echo_output( 0 ) );
 	}
 
-	function test_filter_c2c_previous_or_loop_post_link_output() {
+	public function test_filter_c2c_previous_or_loop_post_link_output() {
 		add_filter( 'c2c_previous_or_loop_post_link_output', array( $this, 'filter_append' ) );
 
 		$this->assertEquals( $this->expected( 5, false ) . '(extra)', $this->get_echo_output( 0, false ) );

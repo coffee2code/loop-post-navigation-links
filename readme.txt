@@ -5,8 +5,8 @@ Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, n
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 4.3
-Stable tag: 2.6
+Tested up to: 4.4
+Stable tag: 2.6.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -76,7 +76,7 @@ Like WordPress's `get_adjacent_post()` when used to find the previous post, exce
 
 == Examples ==
 
-`<div class="navigation">
+`<div class="loop-navigation">
 	<div class="alignleft"><?php c2c_previous_or_loop_post_link(); ?></div>
 	<div class="alignright"><?php c2c_next_or_loop_post_link(); ?></div>
 </div>`
@@ -124,6 +124,16 @@ Do:
 
 
 == Changelog ==
+
+= 2.6.1 (2016-03-10) =
+* New: Add support for language packs:
+    * Define 'Text Domain' header attribute.
+    * Load textdomain.
+* New: Add LICENSE file.
+* New: Create empty index.php to prevent files from being listed if web server has enabled directory listings.
+* Change: Note compatibility through WP 4.4+.
+* Change: Explicitly declare methods in unit tests as public.
+* Change: Update copyright date (2016).
 
 = 2.6 (2015-07-14) =
 * Feature: Add new template tags for getting the adjacent or looped post object:
@@ -245,6 +255,9 @@ Do:
 
 
 == Upgrade Notice ==
+
+= 2.6.1 =
+Trivial update: improved support for localization, minor unit test tweaks, verified compatibility through WP 4.4+, and updated copyright date (2016)
 
 = 2.6 =
 Recommended minor update: Added new template tags for getting the adjacent or looped post object; minor bug fixes; noted compatibility through WP 4.3+
