@@ -28,7 +28,7 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-
 
 == Installation ==
 
-1. Unzip `loop-post-navigation-links.zip` inside the `/wp-content/plugins/` directory (or install via the built-in WordPress plugin installer)
+1. Install via the built-in WordPress plugin installer. Or download and unzip `loop-post-navigation-links.zip` inside the plugins directory for your site (typically `wp-content/plugins/`)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
 1. Use `c2c_next_or_loop_post_link()` template tag instead of `next_post_link()`, and/or `c2c_previous_or_loop_post_link()` template tag instead of `previous_post_link()`, in your single-post template (single.php).
 
