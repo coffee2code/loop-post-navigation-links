@@ -7,6 +7,7 @@
     * Change: Enable more error output for unit tests
     * Fix: Don't declare `$posts` as being static since it's never referenced as if it was
 * Change: Update License URI to be HTTPS
+* Change: Update copyright date (2020)
 * Change: Update installation instruction to prefer built-in installer over .zip file
 
 ## 2.6.1 _(2016-03-10)_
