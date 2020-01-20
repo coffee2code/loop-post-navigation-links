@@ -3,7 +3,7 @@ Contributors: coffee2code
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, next_post_link, coffee2code
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 4.4
 Stable tag: 2.6.1

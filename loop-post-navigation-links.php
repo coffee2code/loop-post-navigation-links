@@ -7,7 +7,7 @@
  * Author URI:  http://coffee2code.com/
  * Text Domain: loop-post-navigation-links
  * License:     GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Template tags (for single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
  *
  * Compatible with WordPress 3.6 through 4.4+.
