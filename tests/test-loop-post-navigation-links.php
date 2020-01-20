@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die();
 
 class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 
-	private static $posts = array();
+	private $posts = array();
 
 	public function setUp() {
 		parent::setUp();

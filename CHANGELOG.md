@@ -5,6 +5,7 @@
 * Unit tests:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Enable more error output for unit tests
+    * Fix: Don't declare `$posts` as being static since it's never referenced as if it was
 
 ## 2.6.1 _(2016-03-10)_
 * New: Add support for language packs:
