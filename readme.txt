@@ -23,7 +23,7 @@ Useful for providing a looping link of posts, such as for a portfolio, or to con
 
 If you are interested in getting the post itself and not just a link to the post, you can use the `c2c_get_next_or_loop_post()` and `c2c_get_previous_or_loop_post()` functions.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](https://wordpress.org/plugins/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](https://wordpress.org/plugins/loop-post-navigation-links/) | [GitHub](https://github.com/coffee2code/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==

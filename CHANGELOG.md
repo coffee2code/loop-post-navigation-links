@@ -2,6 +2,7 @@
 
 # _(in-progress)_
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* New: Add GitHub link to readme.txt
 * Unit tests:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Enable more error output for unit tests
