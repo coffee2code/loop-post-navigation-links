@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, next_post_link, coffee2code
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 3.6
-Tested up to: 4.4
+Requires at least: 4.9
+Tested up to: 5.3
 Stable tag: 2.6.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
