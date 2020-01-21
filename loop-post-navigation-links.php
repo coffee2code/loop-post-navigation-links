@@ -75,22 +75,13 @@ class c2c_LoopPostNavigationLinks {
 	 */
 	public static function init() {
 		// Load plugin textdomain.
-		self::load_textdomain();
+		load_plugin_textdomain( 'loop-post-navigation-links' );
 
 		/*
 		 * Register actions to filter WHERE clause when previous or next post query is being processed.
 		 */
 		add_filter( 'get_next_post_where',     array( __CLASS__, 'modify_nextprevious_post_where' ) );
 		add_filter( 'get_previous_post_where', array( __CLASS__, 'modify_nextprevious_post_where' ) );
-	}
-
-	/**
-	 * Loads the plugin domain for If File Exists.
-	 *
-	 * @since 2.6.1
-	 */
-	public static function load_textdomain() {
-		load_plugin_textdomain( 'loop-post-navigation-links' );
 	}
 
 	/**
