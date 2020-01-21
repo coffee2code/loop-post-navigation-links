@@ -6,6 +6,7 @@
 * Unit tests:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Enable more error output for unit tests
+    * Change: Comment out unit tests that weren't actually testing anything
     * Fix: Don't declare `$posts` as being static since it's never referenced as if it was
 * Change: Update License URI to be HTTPS
 * Change: Update copyright date (2020)

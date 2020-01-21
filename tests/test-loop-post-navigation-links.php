@@ -200,17 +200,17 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( str_replace( 'Post A', 'Post A December 1, 2013', $this->expected( 0, false ) ), $this->get_echo_output( 1, false, array( 'link' => '%title %date' ) ) );
 	}
 
-	public function test_arg_in_same_term() {
+//	public function test_arg_in_same_term() {
 		//TODO; yeah, i know
-	}
+//	}
 
-	public function test_arg_excluded_terms() {
+//	public function test_arg_excluded_terms() {
 		//TODO; yeah, i know
-	}
+//	}
 
-	public function test_arg_taxonomy() {
+//	public function test_arg_taxonomy() {
 		//TODO; yeah, i know
-	}
+//	}
 
 	public function test_filter_invocation() {
 		$this->assertEquals( str_replace( 'Post B', 'Post B December 2, 2013', $this->expected( 1 ) ), $this->get_echo_output( 0, true, array( 'link' => '%title %date' ), true ) );
