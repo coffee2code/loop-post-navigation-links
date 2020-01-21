@@ -75,7 +75,7 @@ class c2c_LoopPostNavigationLinks {
 	 */
 	public static function init() {
 		// Load plugin textdomain.
-		add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
+		self::load_textdomain();
 
 		/*
 		 * Register actions to filter WHERE clause when previous or next post query is being processed.
@@ -118,7 +118,7 @@ class c2c_LoopPostNavigationLinks {
 
 } // end c2c_LoopPostNavigationLinks
 
-c2c_LoopPostNavigationLinks::init();
+add_action( 'plugins_loaded', array( 'c2c_LoopPostNavigationLinks', 'init' ) );
 
 endif; // end if !class_exists()
 

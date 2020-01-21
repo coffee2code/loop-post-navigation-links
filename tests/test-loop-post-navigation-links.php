@@ -126,6 +126,10 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertTrue( class_exists( 'c2c_LoopPostNavigationLinks' ) );
 	}
 
+	public function test_hooks_plugins_loaded() {
+		$this->assertEquals( 10, has_action( 'plugins_loaded', array( 'c2c_LoopPostNavigationLinks', 'init' ) ) );
+	}
+
 	public function test_c2c_next_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 1 ), $this->get_echo_output( 0 ) );
 		$this->assertEquals( $this->expected( 2 ), $this->get_echo_output( 1 ) );
