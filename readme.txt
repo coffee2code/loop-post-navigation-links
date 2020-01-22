@@ -87,7 +87,7 @@ Like WordPress's `get_adjacent_post()` when used to find the previous post, exce
 The plugin is further customizable via eleven hooks. Typically, this type of customization would be put into your active theme's functions.php file or used by another plugin.
 The plugin exposes a number of filters and actions for hooking. Typically, code making use of filters should ideally be put into a mu-plugin, a site-specific plugin (which is beyond the scope of this readme to explain), or in theme template files. Many of these filters are likely only of interest to advanced users able to code.
 
-= c2c_previous_or_loop_post_link_output, c2c_next_or_loop_post_link_output (filters) =
+**c2c_previous_or_loop_post_link_output, c2c_next_or_loop_post_link_output (filters)**
 
 The 'c2c_previous_or_loop_post_link_output' and 'c2c_next_or_loop_post_link_output' filters allow you to customize the link markup generated for previous and next looping links, respectively.
 
@@ -101,11 +101,11 @@ Example:
     add_filter( 'c2c_previous_or_loop_post_link_output', 'my_custom_previous_or_loop_link_output', 10, 4 );
   ?>`
 
-= c2c_previous_or_loop_post_link_get, c2c_next_or_loop_post_link_get (filters) =
+**c2c_previous_or_loop_post_link_get, c2c_next_or_loop_post_link_get (filters)**
 
 The 'c2c_previous_or_loop_post_link_get' and 'c2c_next_or_loop_post_link_get' filters allow you to customize the link markups generated for previous and next looping links, respectively, but in the non-echoing functions.
 
-= c2c_previous_or_loop_post_link, c2c_next_or_loop_post_link (actions), c2c_get_previous_or_loop_post_link, c2c_get_next_or_loop_post_link, c2c_get_adjacent_or_loop_post, c2c_get_previous_or_loop_post, c2c_get_previous_or_loop_post (actions) =
+**c2c_previous_or_loop_post_link, c2c_next_or_loop_post_link, c2c_get_previous_or_loop_post_link, c2c_get_next_or_loop_post_link, c2c_get_adjacent_or_loop_post, c2c_get_previous_or_loop_post, c2c_get_previous_or_loop_post (actions)**
 
 The 'c2c_previous_or_loop_post_link' and 'c2c_next_or_loop_post_link' actions allow you to use an alternative approach to safely invoke `c2c_previous_or_loop_post_link()` and `c2c_next_or_loop_post_link()`, respectively, in such a way that if the plugin were deactivated or deleted, then your calls to the functions won't cause errors in your site. The 'c2c_get_previous_or_loop_post_link' and 'c2c_get_next_or_loop_post_link' filters do the same for the non-echoing `c2c_previous_or_loop_post_link()` and `c2c_next_or_loop_post_link()`.
 
