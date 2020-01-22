@@ -254,7 +254,7 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 	$adjacent = $previous ? 'previous' : 'next';
 
 	/** This filter is documented in wp-includes/link-template.php */
-	$output = apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post );
+	$output = apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
 
 	/**
 	 * Filters the adjacent post link.

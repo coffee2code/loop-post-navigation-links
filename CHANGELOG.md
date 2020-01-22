@@ -1,12 +1,14 @@
 # Changelog
 
 # _(in-progress)_
+* New: Add `` to get URL of adjacent/looped post
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add README.md file
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
 * New: Add inline documentation for hooks
 * New: Add GitHub link to readme.txt
-* Change: Add `$adjacent` argument to `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output` filters, to sync with WP core
+* Change: Add `$adjacent` argument to a number of filters, to sync with WP core
+    * Adds to `{$adjacent}_post_link`, `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output`
 * Change: Initialize plugin on 'plugins_loaded' action instead of on load
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`
 * Unit tests:
