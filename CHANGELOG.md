@@ -4,6 +4,7 @@
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add README.md file
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
+* New: Add inline documentation for hooks
 * New: Add GitHub link to readme.txt
 * Change: Initialize plugin on 'plugins_loaded' action instead of on load
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`

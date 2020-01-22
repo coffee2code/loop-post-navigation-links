@@ -253,14 +253,46 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 
 	$adjacent = $previous ? 'previous' : 'next';
 
-	// Apply the filters present in WP's adjacent_or_loop_post_link()
+	/** This filter is documented in wp-includes/link-template.php */
 	$output = apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post );
 
-	// Apply old {$adjacent}_or_loop_post_link filters.
-	// Deprecated as of v2.0. Here temporarily for backwards compatibility.
+	/**
+	 * Filters the adjacent post link.
+	 *
+	 * The dynamic portion of the hook name, `$adjacent`, refers to the type
+	 * of adjacency, 'next' or 'previous'.
+	 *
+	 * Equivalent to WP's '{$adjacent}_post_link' filter.
+	 *
+	 * @since 1.5
+	 * @deprecated 2.0 Use 'c2c_{$adjacent}_or_loop_post_link_get'
+	 *
+	 * @param string  $output   The adjacent post link.
+	 * @param string  $format   Link anchor format.
+	 * @param string  $link     Link permalink format.
+	 * @param WP_Post $post     The adjacent post.
+	 */
 	$output = apply_filters( "{$adjacent}_or_loop_post_link", $output, $format, $link, $post );
 
-	// Apply custom filters and return
+	/**
+	 * Filters the adjacent post link.
+	 *
+	 * The dynamic portion of the hook name, `$adjacent`, refers to the type
+	 * of adjacency, 'next' or 'previous'.
+	 *
+	 * Similar to WP's '{$adjacent}_post_link' filter.
+	 *
+	 * @since 2.5
+	 *
+	 * @param string       $output         The adjacent post link.
+	 * @param string       $format         Link anchor format.
+	 * @param string       $link           Link permalink format.
+	 * @param WP_Post      $post           The adjacent post.
+	 * @param bool         $in_same_term   Whether link should be in a same taxonomy term. Default is false.
+	 * @param array|string $excluded_terms Array or comma-separated list of excluded term IDs. Default is ''.
+	 * @param bool         $previous       Whether to display link to previous or next post. Default is true.
+	 * @param string       $taxonomy       Taxonomy, if $in_same_term is true. Default 'category'.
+	 */
 	return apply_filters( "c2c_{$adjacent}_or_loop_post_link_get", $output, $format, $link, $post, $in_same_term, $excluded_terms, $taxonomy );
 }
 add_action( 'c2c_get_adjacent_or_loop_post_link', 'c2c_get_adjacent_or_loop_post_link', 10, 6 );
@@ -289,7 +321,19 @@ function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, 
 
 	$adjacent = $previous ? 'previous' : 'next';
 
-	// Apply custom filters and echo
+	/**
+	 * Filters the adjacent post link or the post link for the post at the
+	 * opposite end of the series.
+	 *
+	 * @since 2.0
+	 *
+	 * @param string       $format         Link anchor format.
+	 * @param string       $link           Link permalink format.
+	 * @param bool         $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
+	 * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.
+	 * @param bool         $previous       Optional. Whether to display link to previous or next post. Default is true.
+	 * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+	 */
 	echo apply_filters(
 		"c2c_{$adjacent}_or_loop_post_link_output",
 		c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term, $excluded_terms, $previous, $taxonomy ),
