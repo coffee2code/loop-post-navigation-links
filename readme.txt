@@ -82,9 +82,10 @@ Like WordPress's `get_adjacent_post()` when used to find the previous post, exce
 </div>`
 
 
-== Filters ==
+== Hooks ==
 
 The plugin is further customizable via eleven hooks. Typically, this type of customization would be put into your active theme's functions.php file or used by another plugin.
+The plugin exposes a number of filters and actions for hooking. Typically, code making use of filters should ideally be put into a mu-plugin, a site-specific plugin (which is beyond the scope of this readme to explain), or in theme template files. Many of these filters are likely only of interest to advanced users able to code.
 
 = c2c_previous_or_loop_post_link_output, c2c_next_or_loop_post_link_output (filters) =
 
