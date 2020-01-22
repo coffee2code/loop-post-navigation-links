@@ -244,11 +244,11 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 		$rel = $previous ? 'prev' : 'next';
 
 		$string = '<a href="' . get_permalink( $post ) . '" rel="' . $rel . '">';
-		$link = str_replace( '%title', $title, $link );
-		$link = str_replace( '%date', $date, $link );
-		$link = $string . $link . '</a>';
+		$inlink = str_replace( '%title', $title, $link );
+		$inlink = str_replace( '%date', $date, $inlink );
+		$inlink = $string . $inlink . '</a>';
 
-		$output = str_replace( '%link', $link, $format );
+		$output = str_replace( '%link', $inlink, $format );
 	}
 
 	$adjacent = $previous ? 'previous' : 'next';

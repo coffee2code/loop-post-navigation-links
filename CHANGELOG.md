@@ -9,6 +9,7 @@
 * New: Add GitHub link to readme.txt
 * Change: Add `$adjacent` argument to a number of filters, to sync with WP core
     * Adds to `{$adjacent}_post_link`, `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output`
+* Change: Use a different variable name to avoid changing variable sent as function argument and later passed as argument to filter
 * Change: Initialize plugin on 'plugins_loaded' action instead of on load
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`
 * Unit tests:
