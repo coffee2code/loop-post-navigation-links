@@ -22,12 +22,6 @@
  */
 
 /*
- * TODO
- * - Add docblocks for hooks
- * - Add ability to define orderby
- */
-
-/*
 	Copyright (c) 2008-2020 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
