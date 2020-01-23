@@ -212,22 +212,10 @@ if ( ! function_exists( 'c2c_get_adjacent_or_loop_post_link' ) ) :
  * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
  */
 function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
-	if ( $previous && is_attachment() )
-		$post = get_post( get_post()->post_parent );
-	else
-		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
+	$post = c2c_get_adjacent_or_loop_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
 
-	// START The only modification of get_adjacent_post_link() -- get the last/first post if there isn't a legitimate previous/next post
-	if ( ! $post ) {
-		c2c_LoopPostNavigationLinks::$loop_navigation_find = true;
-		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
-		c2c_LoopPostNavigationLinks::$loop_navigation_find = false;
-		// Don't loop to itself.
-		if ( $post == get_post() ) {
-			$post = null;
-		}
-	}
-	// END modification
+	// Most of what follows was lifted from `get_adjacent_post_link()` (except
+	// for passing `$output` through a couple additional filters).
 
 	if ( ! $post ) {
 		$output = '';
