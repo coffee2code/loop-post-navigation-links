@@ -21,6 +21,7 @@
 * Change: Note compatibility through WP 5.3+
 * Change: Drop compatibility with versions of WP older than 4.9
 * Change: Tweak formatting for installation instructions
+* Change: Remove documentation for non-existent parameters of `modify_nextprevious_post_where()`
 * Change: Modify formatting of hook name in readme to prevent being uppercased when shown in the Plugin Directory
 * Change: Rename readme.txt section from 'Filters' to 'Hooks' and provide a better section intro
 * Change: Update License URI to be HTTPS
