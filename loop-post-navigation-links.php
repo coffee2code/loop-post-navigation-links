@@ -218,8 +218,9 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 	} else {
 		$title = $post->post_title;
 
-		if ( empty( $post->post_title ) )
+		if ( empty( $post->post_title ) ) {
 			$title = $previous ? __( 'Previous Post' ) : __( 'Next Post' );
+		}
 
 		/** This filter is documented in wp-includes/post-template.php */
 		$title = apply_filters( 'the_title', $title, $post->ID );

@@ -12,6 +12,7 @@
 * Change: Use `c2c_get_adjacent_or_loop_post()` to obtain post, rather than duplicating its functionality in `c2c_get_adjacent_or_loop_post_link()`
 * Change: Use a different variable name to avoid changing variable sent as function argument and later passed as argument to filter
 * Change: Initialize plugin on 'plugins_loaded' action instead of on load
+* Change: Update code formatting to match modern WordPress standards
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`
 * Unit tests:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo

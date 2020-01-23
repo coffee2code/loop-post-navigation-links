@@ -13,8 +13,9 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 
 	public function tearDown() {
 		parent::tearDown();
-		foreach( array( 'c2c_next_or_loop_post_link_output', 'c2c_previous_or_loop_post_link_output') as $filter )
+		foreach( array( 'c2c_next_or_loop_post_link_output', 'c2c_previous_or_loop_post_link_output') as $filter ) {
 			remove_filter( $filter, array( $this, 'filter_append' ) );
+		}
 	}
 
 
@@ -67,20 +68,24 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		ob_start();
 
 		if ( $next ) {
-			if ( empty( $format ) )
+			if ( empty( $format ) ) {
 				$format = '%link &raquo;';
+			}
 
 			if ( $via_filter ) {
 				do_action( 'c2c_next_or_loop_post_link', $format, $link, $in_same_term, $excluded_terms, $taxonomy );
-			} else
+			} else {
 				c2c_next_or_loop_post_link( $format, $link, $in_same_term, $excluded_terms, $taxonomy );
+			}
 		} else {
-			if ( empty( $format ) )
+			if ( empty( $format ) ) {
 				$format = '&laquo; %link';
-			if ( $via_filter )
+			}
+			if ( $via_filter ) {
 				do_action( 'c2c_previous_or_loop_post_link', $format, $link, $in_same_term, $excluded_terms, $taxonomy );
-			else
+			} else {
 				c2c_previous_or_loop_post_link( $format, $link, $in_same_term, $excluded_terms, $taxonomy );
+			}
 		}
 
 		$out = ob_get_contents();
