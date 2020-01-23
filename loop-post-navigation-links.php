@@ -302,12 +302,6 @@ if ( ! function_exists( 'c2c_adjacent_or_loop_post_link' ) ) :
  * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
  */
 function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
-	if ( $previous && is_attachment() ) {
-		$post = get_post( get_post()->post_parent );
-	} else {
-		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
-	}
-
 	$adjacent = $previous ? 'previous' : 'next';
 
 	/**
@@ -315,7 +309,7 @@ function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, 
 	 * opposite end of the series.
 	 *
 	 * @since 2.0
-	 * @since 2.7 Added the `$adjacent` parameter.
+	 * @since 2.7 Added the `$adjacent` parameter and removed `$post` parameter.
 	 *
 	 * @param string       $format         Link anchor format.
 	 * @param string       $link           Link permalink format.
@@ -330,7 +324,6 @@ function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, 
 		c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term, $excluded_terms, $previous, $taxonomy ),
 		$format,
 		$link,
-		$post,
 		$in_same_term,
 		$excluded_terms,
 		$taxonomy,
