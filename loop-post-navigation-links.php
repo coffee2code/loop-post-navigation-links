@@ -208,7 +208,7 @@ if ( ! function_exists( 'c2c_get_adjacent_or_loop_post_link' ) ) :
  * @param string       $link           Link permalink format.
  * @param bool         $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
  * @param array|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.
- * @param bool         $previous       Optional. Whether to display link to previous or next post. Default is true.
+ * @param bool         $previous       Optional. Display link to previous post? Default is true.
  * @param string       $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
  */
 function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, $excluded_terms = '', $previous = true, $taxonomy = 'category' ) {
