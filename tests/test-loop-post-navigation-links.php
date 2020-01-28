@@ -262,4 +262,30 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( $this->expected( 1, false, false ), c2c_get_previous_or_loop_post_link( '%link', '%title' ) );
 	}
 
+	/*
+	 * filter: c2c_{$adjacent}_or_loop_post_link_get
+	 */
+
+	public function test_c2c_next_or_loop_post_link_get() {
+		add_filter( 'c2c_next_or_loop_post_link_get', function ( $o ) { return str_replace( '</a>', ' TESTING</a>', $o ); }, 100 );
+		$this->load_post( $this->posts[2] );
+
+		$post = get_post( $this->posts[5] );
+
+		$expected = sprintf( '<a href="http://example.org/?p=%d" rel="next">%s TESTING</a>', $post->ID, $post->post_title );
+
+		$this->assertEquals( $expected, c2c_get_next_or_loop_post_link( '%link', '%title' ) );
+	}
+
+	public function test_c2c_previous_or_loop_post_link_get() {
+		add_filter( 'c2c_previous_or_loop_post_link_get', function ( $o ) { return str_replace( '</a>', ' PTESTING</a>', $o ); }, 100 );
+		$this->load_post( $this->posts[2] );
+
+		$post = get_post( $this->posts[1] );
+
+		$expected = sprintf( '<a href="http://example.org/?p=%d" rel="prev">%s PTESTING</a>', $post->ID, $post->post_title );
+
+		$this->assertEquals( $expected, c2c_get_previous_or_loop_post_link( '%link', '%title' ) );
+	}
+
 }

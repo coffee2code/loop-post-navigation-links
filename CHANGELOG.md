@@ -22,6 +22,7 @@
     * Change: Enable more error output for unit tests
     * Change: Comment out unit tests that weren't actually testing anything
     * Fix: Don't declare `$posts` as being static since it's never referenced as if it was
+    * New: Add tests for hooks
 * Change: Note compatibility through WP 5.3+
 * Change: Drop compatibility with versions of WP older than 4.9
 * Change: Tweak formatting for installation instructions
