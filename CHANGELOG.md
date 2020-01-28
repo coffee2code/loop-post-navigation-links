@@ -17,6 +17,7 @@
 * Change: Update code formatting to match modern WordPress standards
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`
 * Unit tests:
+    * Change: Change `expected()` to optionally not include arrow quotes
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Enable more error output for unit tests
     * Change: Comment out unit tests that weren't actually testing anything

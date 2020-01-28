@@ -93,20 +93,20 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		return $out;
 	}
 
-	protected function expected( $index, $next = true ) {
+	protected function expected( $index, $next = true, $include_aquo = true ) {
 		$post_id = $this->posts[ $index ];
 		$post = get_post( $post_id );
 
 		$dir = $next ? 'next' : 'prev';
 
-		$str = $next ? '' : '&laquo; ';
+		$str = $include_aquo && ! $next ? '&laquo; ' : '';
 		$str .= sprintf(
 			'<a href="http://example.org/?p=%d" rel="%s">%s</a>',
 			$post_id,
 			$dir,
 			$post->post_title
 		);
-		$str .= $next ? ' &raquo;' : '';
+		$str .= $include_aquo && $next ? ' &raquo;' : '';
 
 		return $str;
 	}
