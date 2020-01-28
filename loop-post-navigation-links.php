@@ -259,7 +259,7 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 	 * @param WP_Post $post     The adjacent post.
 	 * @param string  $adjacent Whether the post is previous or next.
 	 */
-	$output = apply_filters( "{$adjacent}_or_loop_post_link", $output, $format, $link, $post, $adjacent );
+	$output = apply_filters_deprecated( "{$adjacent}_or_loop_post_link", array( $output, $format, $link, $post, $adjacent ), '2.0', "c2c_{$adjacent}_or_loop_post_link_get" );
 
 	/**
 	 * Filters the adjacent post link.

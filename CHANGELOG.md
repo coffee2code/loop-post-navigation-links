@@ -13,6 +13,7 @@
 * Change: Remove unnecessary (and incorrect) determination of adjacent post in `c2c_adjacent_or_loop_post_link()`
 * Change: Use a different variable name to avoid changing variable sent as function argument and later passed as argument to filter
 * Change: Initialize plugin on 'plugins_loaded' action instead of on load
+* Change: Use `apply_filters_deprecated()` to formally deprecate the `{$adjacent}_or_loop_post_link` filter
 * Change: Update code formatting to match modern WordPress standards
 * Change: Remove `load_textdomain()` and just load the textdomain within `init()`
 * Unit tests:
