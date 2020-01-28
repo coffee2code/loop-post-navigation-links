@@ -248,11 +248,8 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 	public function test_deprecated_filter_next_or_loop_post_link() {
 		add_filter( 'next_or_loop_post_link', function ( $o ) { return $o; } );
 		$this->load_post( $this->posts[2] );
-		$post = get_post( $this->posts[5] );
 
-		$expected = sprintf( '<a href="http://example.org/?p=%d" rel="next">%s</a>', $post->ID, $post->post_title );
-
-		$this->assertEquals( $expected, c2c_get_next_or_loop_post_link( '%link', '%title' ) );
+		$this->assertEquals( $this->expected( 5, true, false ), c2c_get_next_or_loop_post_link( '%link', '%title' ) );
 	}
 
 	/**
@@ -261,11 +258,8 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 	public function test_deprecated_filter_previous_or_loop_post_link() {
 		add_filter( 'previous_or_loop_post_link', function ( $o ) { return $o; } );
 		$this->load_post( $this->posts[2] );
-		$post = get_post( $this->posts[1] );
 
-		$expected = sprintf( '<a href="http://example.org/?p=%d" rel="prev">%s</a>', $post->ID, $post->post_title );
-
-		$this->assertEquals( $expected, c2c_get_previous_or_loop_post_link( '%link', '%title' ) );
+		$this->assertEquals( $this->expected( 1, false, false ), c2c_get_previous_or_loop_post_link( '%link', '%title' ) );
 	}
 
 }
