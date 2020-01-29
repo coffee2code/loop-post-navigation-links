@@ -7,6 +7,7 @@
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
 * New: Add inline documentation for hooks
 * New: Add GitHub link to readme.txt
+* Fix: Add missing argument `$previous` and remove argument `$post` from `"c2c_{$adjacent}_or_loop_post_link_output` hook invocation
 * Change: Add `$adjacent` argument to a number of filters, to sync with WP core
     * Adds to `{$adjacent}_post_link`, `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output`
 * Change: Use `c2c_get_adjacent_or_loop_post()` to obtain post, rather than duplicating its functionality in `c2c_get_adjacent_or_loop_post_link()`

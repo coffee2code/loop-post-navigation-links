@@ -326,6 +326,7 @@ function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, 
 		$link,
 		$in_same_term,
 		$excluded_terms,
+		$previous,
 		$taxonomy,
 		$adjacent
 	);
