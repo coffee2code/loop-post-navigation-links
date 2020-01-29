@@ -226,6 +226,32 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( str_replace( 'Post A', 'Post A December 1, 2013', $this->expected( 0, false ) ), $this->get_echo_output( 1, false, array( 'link' => '%title %date' ), true ) );
 	}
 
+	/*
+	 * c2c_get_next_or_loop_post_url()
+	 */
+
+	public function test_c2c_get_next_or_loop_post_url() {
+		$this->load_post( $this->posts[2] );
+		$post = get_post( $this->posts[5] );
+
+		$this->assertEquals( get_permalink( $post ), c2c_get_next_or_loop_post_url() );
+	}
+
+	/*
+	 * c2c_get_previous_or_loop_post_url()
+	 */
+
+	public function test_c2c_get_previous_or_loop_post_url() {
+		$this->load_post( $this->posts[2] );
+		$post = get_post( $this->posts[1] );
+
+		$this->assertEquals( get_permalink( $post ), c2c_get_previous_or_loop_post_url() );
+	}
+
+	/*
+	 * filter: c2c_{$adjacent}_or_loop_post_link_output
+	 */
+
 	public function test_filter_c2c_next_or_loop_post_link_output() {
 		add_filter( 'c2c_next_or_loop_post_link_output', array( $this, 'filter_append' ) );
 

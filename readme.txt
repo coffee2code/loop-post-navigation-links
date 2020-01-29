@@ -21,7 +21,7 @@ The function `c2c_previous_or_loop_post_link()` is identical to WordPress's `pre
 
 Useful for providing a looping link of posts, such as for a portfolio, or to continually present pertinent posts for visitors to continue reading.
 
-If you are interested in getting the post itself and not just a link to the post, you can use the `c2c_get_next_or_loop_post()` and `c2c_get_previous_or_loop_post()` functions.
+If you are interested in getting the post itself and not just a link to the post, you can use the `c2c_get_next_or_loop_post()` and `c2c_get_previous_or_loop_post()` functions. If you just want the URL to the post, you can use `c2c_get_next_or_loop_post_url()` and `c2c_get_previous_or_loop_post_url()`.
 
 Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/loop-post-navigation-links/) | [Plugin Directory Page](https://wordpress.org/plugins/loop-post-navigation-links/) | [GitHub](https://github.com/coffee2code/loop-post-navigation-links/) | [Author Homepage](http://coffee2code.com)
 
@@ -56,6 +56,12 @@ Like WordPress's `get_adjacent_post()` when used to find the next post, except w
 
 * `function c2c_get_previous_or_loop_post( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
 Like WordPress's `get_adjacent_post()` when used to find the previous post, except when on the first post in the sequence this function will return the last post in the sequence, creating a circular loop.
+
+* `function c2c_get_next_or_loop_post_url( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
+Returns the URL for the next post or the post at the beginning of the series.
+
+* `function c2c_get_previous_or_loop_post_url( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' )`
+Returns the URL for the previous post or the post at the end of the series.
 
 = Arguments =
 

@@ -407,7 +407,49 @@ function c2c_get_previous_or_loop_post( $in_same_term = false, $excluded_terms =
 add_action( 'c2c_get_previous_or_loop_post', 'c2c_get_previous_or_loop_post', 10, 3 );
 endif;
 
+if ( ! function_exists( 'c2c_get_next_or_loop_post_url' ) ) :
+/**
+ * Returns the URL for the next post or the post at the beginning of the series.
+ *
+ * @since 2.7
+ *
+ * @param bool          $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
+ * @param array|string  $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.
+ * @param string        $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+ *
+ * @return WP_Post|null The post, or null if the post loops back to itself.
+ */
+function c2c_get_next_or_loop_post_url( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' ) {
+	$url = '';
+	$post = c2c_get_adjacent_or_loop_post( $in_same_term, $excluded_terms, false, $taxonomy );
+	if ( $post ) {
+		$url = get_permalink( $post );
+	}
+	return $url;
+}
+endif;
 
+if ( ! function_exists( 'c2c_get_previous_or_loop_post_url' ) ) :
+/**
+ * Returns the URL for the previous post or the post at the end of the series.
+ *
+ * @since 2.7
+ *
+ * @param bool          $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
+ * @param array|string  $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.
+ * @param string        $taxonomy       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+ *
+ * @return WP_Post|null The post, or null if the post loops back to itself.
+ */
+function c2c_get_previous_or_loop_post_url( $in_same_term = false, $excluded_terms = '', $taxonomy = 'category' ) {
+	$url = '';
+	$post = c2c_get_adjacent_or_loop_post( $in_same_term, $excluded_terms, true, $taxonomy );
+	if ( $post ) {
+		$url = get_permalink( $post );
+	}
+	return $url;
+}
+endif;
 
 
 /*****

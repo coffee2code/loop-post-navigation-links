@@ -6,7 +6,6 @@ The following list comprises ideas, suggestions, and known issues, all of which 
 
 * Add docblocks for hooks
 * Add ability to define orderby
-* Add template tag to retrieve just the URL of the prev/next post.
 * Might as well also add template tag to retrieve prev/next post object.
 * Add simple block that can output one or the other (or both) links.
 

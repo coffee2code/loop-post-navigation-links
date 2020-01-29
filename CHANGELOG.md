@@ -1,7 +1,7 @@
 # Changelog
 
 # _(in-progress)_
-* New: Add `` to get URL of adjacent/looped post
+* New: Add `c2c_get_next_or_loop_post_url()` and `c2c_get_previous_or_loop_post_url()` to get URL of adjacent/looped post
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add README.md file
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
