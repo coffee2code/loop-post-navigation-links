@@ -90,6 +90,16 @@ The plugin is further customizable via eleven hooks. Typically, code making use 
 
 The 'c2c_previous_or_loop_post_link_output' and 'c2c_next_or_loop_post_link_output' filters allow you to customize the link markup generated for previous and next looping links, respectively.
 
+Arguments:
+
+* $format         (string):       Link anchor format.
+* $link           (string):       Link permalink format.
+* $in_same_term   (bool):         Optional. Whether link should be in a same taxonomy term. Default is false.
+* $excluded_terms (array|string): Optional. Array or comma-separated list of excluded term IDs. Default is ''.
+* $previous       (bool):         Optional. Whether to display link to previous or next post. Default is true.
+* $taxonomy       (string):       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+* $adjacent       (string):       Whether the post is previous or next.
+
 Example:
 
   `<?php
@@ -103,6 +113,18 @@ Example:
 **c2c_previous_or_loop_post_link_get, c2c_next_or_loop_post_link_get (filters)**
 
 The 'c2c_previous_or_loop_post_link_get' and 'c2c_next_or_loop_post_link_get' filters allow you to customize the link markups generated for previous and next looping links, respectively, but in the non-echoing functions.
+
+Arguments:
+
+* $output         (string):       The adjacent post link.
+* $format         (string):       Link anchor format.
+* $link           (string):       Link permalink format.
+* $post           (WP_Post):      The adjacent post.
+* $in_same_term   (bool):         Optional. Whether link should be in a same taxonomy term. Default is false.
+* $excluded_terms (array|string): Optional. Array or comma-separated list of excluded term IDs. Default is ''.
+* $previous       (bool):         Optional. Whether to display link to previous or next post. Default is true.
+* $taxonomy       (string):       Optional. Taxonomy, if $in_same_term is true. Default 'category'.
+* $adjacent       (string):       Whether the post is previous or next.
 
 **c2c_previous_or_loop_post_link, c2c_next_or_loop_post_link, c2c_get_previous_or_loop_post_link, c2c_get_next_or_loop_post_link, c2c_get_adjacent_or_loop_post, c2c_get_previous_or_loop_post, c2c_get_previous_or_loop_post (actions)**
 
