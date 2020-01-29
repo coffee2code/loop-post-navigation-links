@@ -29,6 +29,7 @@
 * Change: Include documentation on filter arguments
 * Change: Tweak formatting for installation instructions
 * Change: Remove documentation for non-existent parameters of `modify_nextprevious_post_where()`
+* Change: Remove unnecessary `echo` in code example
 * Change: Modify formatting of hook name in readme to prevent being uppercased when shown in the Plugin Directory
 * Change: Rename readme.txt section from 'Filters' to 'Hooks' and provide a better section intro
 * Change: Update License URI to be HTTPS

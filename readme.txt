@@ -144,11 +144,11 @@ Example:
 
 Instead of:
 
-`<?php echo c2c_previous_or_loop_post_link( '<span class="prev-or-loop-link">&laquo; %link</span>' ); ?>`
+`<?php c2c_previous_or_loop_post_link( '<span class="prev-or-loop-link">&laquo; %link</span>' ); ?>`
 
 Do:
 
-`<?php echo do_action( 'c2c_previous_or_loop_post_link', '<span class="prev-or-loop-link">&laquo; %link</span>' ); ?>`
+`<?php do_action( 'c2c_previous_or_loop_post_link', '<span class="prev-or-loop-link">&laquo; %link</span>' ); ?>`
 
 
 == Changelog ==
