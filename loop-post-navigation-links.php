@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Loop Post Navigation Links
- * Version:     2.6.1
+ * Version:     3.0
  * Plugin URI:  http://coffee2code.com/wp-plugins/loop-post-navigation-links/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -18,7 +18,7 @@
  *
  * @package Loop_Post_Navigation_Links
  * @author  Scott Reilly
- * @version 2.6.1
+ * @version 3.0
  */
 
 /*
@@ -59,7 +59,7 @@ class c2c_LoopPostNavigationLinks {
 	 * @since 2.6
 	 */
 	public static function version() {
-		return '2.6.1';
+		return '3.0';
 	}
 
 	/**
@@ -250,7 +250,7 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 	 * Equivalent to WP's '{$adjacent}_post_link' filter.
 	 *
 	 * @since 1.5
-	 * @since 2.7 Added the `$adjacent` parameter.
+	 * @since 3.0 Added the `$adjacent` parameter.
 	 * @deprecated 2.0 Use 'c2c_{$adjacent}_or_loop_post_link_get'
 	 *
 	 * @param string  $output   The adjacent post link.
@@ -270,7 +270,7 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 	 * Similar to WP's '{$adjacent}_post_link' filter.
 	 *
 	 * @since 2.5
-	 * @since 2.7 Added the `$adjacent` parameter.
+	 * @since 3.0 Added the `$adjacent` parameter.
 	 *
 	 * @param string       $output         The adjacent post link.
 	 * @param string       $format         Link anchor format.
@@ -309,7 +309,7 @@ function c2c_adjacent_or_loop_post_link( $format, $link, $in_same_term = false, 
 	 * opposite end of the series.
 	 *
 	 * @since 2.0
-	 * @since 2.7 Added the `$adjacent` parameter and removed `$post` parameter.
+	 * @since 3.0 Added the `$adjacent` parameter and removed `$post` parameter.
 	 *
 	 * @param string       $format         Link anchor format.
 	 * @param string       $link           Link permalink format.
@@ -411,7 +411,7 @@ if ( ! function_exists( 'c2c_get_next_or_loop_post_url' ) ) :
 /**
  * Returns the URL for the next post or the post at the beginning of the series.
  *
- * @since 2.7
+ * @since 3.0
  *
  * @param bool          $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
  * @param array|string  $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.
@@ -433,7 +433,7 @@ if ( ! function_exists( 'c2c_get_previous_or_loop_post_url' ) ) :
 /**
  * Returns the URL for the previous post or the post at the end of the series.
  *
- * @since 2.7
+ * @since 3.0
  *
  * @param bool          $in_same_term   Optional. Whether link should be in a same taxonomy term. Default is false.
  * @param array|string  $excluded_terms Optional. Array or comma-separated list of excluded term IDs. Default is ''.

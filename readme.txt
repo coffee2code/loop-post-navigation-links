@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 2.6.1
+Stable tag: 3.0
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -153,6 +153,49 @@ Do:
 
 == Changelog ==
 
+= 3.0 (2020-01-28) =
+Highlights:
+
+* Significant update after a long hiatus! Adds functions for getting the URL of the previous/next post, modernizes unit tests, adds CHANGELOG.md, adds plugin to GitHub, changes plugin initialization, updates compatibility to be for WP 4.9-5.3+, and many other documentation and behind-the-scenes changes.
+* Note that there is an incompatible fix for missing and incorrect arguments for the `c2c_{$adjacent}_or_loop_post_link_output` filter. This change won't affect you unless you have custom code making use of the filter, which is unlikely for almost all users.
+
+Details:
+
+* New: Add `c2c_get_next_or_loop_post_url()` and `c2c_get_previous_or_loop_post_url()` to get URL of adjacent/looped post
+* New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* New: Add README.md file
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
+* New: Add inline documentation for hooks
+* New: Add GitHub link to readme.txt
+* Fix: Add missing argument `$previous` and remove argument `$post` from `c2c_{$adjacent}_or_loop_post_link_output` hook invocation
+* Change: Add `$adjacent` argument to a number of filters, to sync with WP core
+    * Adds to `{$adjacent}_post_link`, `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output`
+* Change: Use `c2c_get_adjacent_or_loop_post()` to obtain post, rather than duplicating its functionality in `c2c_get_adjacent_or_loop_post_link()`
+* Change: Remove unnecessary (and incorrect) determination of adjacent post in `c2c_adjacent_or_loop_post_link()`
+* Change: Use a different variable name to avoid changing variable sent as function argument and later passed as argument to filter
+* Change: Initialize plugin on 'plugins_loaded' action instead of on load
+* Change: Use `apply_filters_deprecated()` to formally deprecate the `{$adjacent}_or_loop_post_link` filter
+* Change: Update code formatting to match modern WordPress standards
+* Change: Remove `load_textdomain()` and just load the textdomain within `init()`
+* Unit tests:
+    * Change: Change `expected()` to optionally not include arrow quotes
+    * Change: Update unit test install script and bootstrap to use latest WP unit test repo
+    * Change: Enable more error output for unit tests
+    * Change: Comment out unit tests that weren't actually testing anything
+    * Fix: Don't declare `$posts` as being static since it's never referenced as if it was
+    * New: Add tests for hooks
+* Change: Note compatibility through WP 5.3+
+* Change: Drop compatibility with versions of WP older than 4.9
+* Change: Include documentation on filter arguments
+* Change: Tweak formatting for installation instructions
+* Change: Remove documentation for non-existent parameters of `modify_nextprevious_post_where()`
+* Change: Remove unnecessary `echo` in code example
+* Change: Modify formatting of hook name in readme to prevent being uppercased when shown in the Plugin Directory
+* Change: Rename readme.txt section from 'Filters' to 'Hooks' and provide a better section intro
+* Change: Update License URI to be HTTPS
+* Change: Update copyright date (2020)
+* Change: Update installation instruction to prefer built-in installer over .zip file
+
 = 2.6.1 (2016-03-10) =
 * New: Add support for language packs:
     * Define 'Text Domain' header attribute.
@@ -181,6 +224,9 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/lo
 
 
 == Upgrade Notice ==
+
+= 3.0 =
+Revival update: added functions for getting URL of previous/next post, modernized unit tests, added CHANGELOG.md, changed plugin initialization, updated compatibility to be WP 4.9-5.3+ updated copyright date (2020), and much more. See changelog for potential breaking change to a filter.
 
 = 2.6.1 =
 Trivial update: improved support for localization, minor unit test tweaks, verified compatibility through WP 4.4+, and updated copyright date (2016)

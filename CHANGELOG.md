@@ -1,13 +1,22 @@
 # Changelog
 
-# _(in-progress)_
+## 3.0 _(2020-01-28)_
+
+### Highlights:
+
+Significant update after a long hiatus! Adds functions for getting the URL of the previous/next post, modernizes unit tests, adds CHANGELOG.md, adds plugin to GitHub, changes plugin initialization, updates compatibility to be for WP 4.9-5.3+, and many other documentation and behind-the-scenes changes.
+
+Note that there is an incompatible fix for missing and incorrect arguments for the `c2c_{$adjacent}_or_loop_post_link_output` filter. This change won't affect you unless you have custom code making use of the filter, which is unlikely for almost all users.
+
+### Details:
+
 * New: Add `c2c_get_next_or_loop_post_url()` and `c2c_get_previous_or_loop_post_url()` to get URL of adjacent/looped post
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add README.md file
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to the list)
 * New: Add inline documentation for hooks
 * New: Add GitHub link to readme.txt
-* Fix: Add missing argument `$previous` and remove argument `$post` from `"c2c_{$adjacent}_or_loop_post_link_output` hook invocation
+* Fix: Add missing argument `$previous` and remove argument `$post` from `c2c_{$adjacent}_or_loop_post_link_output` hook invocation
 * Change: Add `$adjacent` argument to a number of filters, to sync with WP core
     * Adds to `{$adjacent}_post_link`, `{$adjacent}_or_loop_post_link`, `c2c_{$adjacent}_or_loop_post_link_get`, and `c2c_{$adjacent}_or_loop_post_link_output`
 * Change: Use `c2c_get_adjacent_or_loop_post()` to obtain post, rather than duplicating its functionality in `c2c_get_adjacent_or_loop_post_link()`

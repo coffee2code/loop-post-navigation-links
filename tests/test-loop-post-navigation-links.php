@@ -124,7 +124,7 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 
 
 	public function test_plugin_version() {
-		$this->assertEquals( '2.6.1', c2c_LoopPostNavigationLinks::version() );
+		$this->assertEquals( '3.0', c2c_LoopPostNavigationLinks::version() );
 	}
 
 	public function test_class_is_available() {
