@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Loop Post Navigation Links
  * Version:     3.0
- * Plugin URI:  http://coffee2code.com/wp-plugins/loop-post-navigation-links/
+ * Plugin URI:  https://coffee2code.com/wp-plugins/loop-post-navigation-links/
  * Author:      Scott Reilly
- * Author URI:  http://coffee2code.com/
+ * Author URI:  https://coffee2code.com/
  * Text Domain: loop-post-navigation-links
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
