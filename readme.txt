@@ -5,7 +5,7 @@ Tags: posts, navigation, links, next, previous, portfolio, previous_post_link, n
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
-Tested up to: 5.3
+Tested up to: 5.4
 Stable tag: 3.0
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
