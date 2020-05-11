@@ -11,13 +11,6 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->posts = $this->create_posts();
 	}
 
-	public function tearDown() {
-		parent::tearDown();
-		foreach( array( 'c2c_next_or_loop_post_link_output', 'c2c_previous_or_loop_post_link_output') as $filter ) {
-			remove_filter( $filter, array( $this, 'filter_append' ) );
-		}
-	}
-
 
 	//
 	//
