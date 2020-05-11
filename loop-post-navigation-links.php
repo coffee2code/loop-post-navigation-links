@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Loop Post Navigation Links
- * Version:     3.0
+ * Version:     3.0.1
  * Plugin URI:  https://coffee2code.com/wp-plugins/loop-post-navigation-links/
  * Author:      Scott Reilly
  * Author URI:  https://coffee2code.com/
@@ -18,7 +18,7 @@
  *
  * @package Loop_Post_Navigation_Links
  * @author  Scott Reilly
- * @version 3.0
+ * @version 3.0.1
  */
 
 /*
@@ -59,7 +59,7 @@ class c2c_LoopPostNavigationLinks {
 	 * @since 2.6
 	 */
 	public static function version() {
-		return '3.0';
+		return '3.0.1';
 	}
 
 	/**

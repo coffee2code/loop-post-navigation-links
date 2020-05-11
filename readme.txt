@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 3.0
+Stable tag: 3.0.1
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -153,6 +153,11 @@ Do:
 
 == Changelog ==
 
+= 3.0.1 (2020-05-10) =
+* Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
+* Change: Note compatibility through WP 5.4+
+* Change: Update links to coffee2code.com to be HTTPS
+
 = 3.0 (2020-01-28) =
 Highlights:
 
@@ -206,24 +211,13 @@ Details:
 * Change: Explicitly declare methods in unit tests as public.
 * Change: Update copyright date (2016).
 
-= 2.6 (2015-07-14) =
-* Feature: Add new template tags for getting the adjacent or looped post object:
-  * `c2c_get_next_or_loop_post`
-  * `c2c_get_previous_or_loop_post`
-  * `c2c_get_adjacent_or_loop_post`
-* Bugfix: Prevent a link from being shown if the post loops back to itself or is a non-post post_type
-* Bugfix: Correctly invoke `c2c_adjacent_or_loop_post_link()` via `c2c_adjacent_or_loop_post_link` action hook
-* Change: Create class to encapsulate some logic and data, removing use of a global variable
-* Update: Add documentation for new template tags
-* Update: Add more unit tests
-* Update: Minor inline documentation improvements and fixes
-* Update: Note compatibility through WP 4.3+
-* Note: All functions deprecated since v2.0 will be removed in the next major version release
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/loop-post-navigation-links/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 3.0.1 =
+Trivial update: Updated a few URLs to be HTTPS and noted compatibility through WP 5.4+.
 
 = 3.0 =
 Revival update: added functions for getting URL of previous/next post, modernized unit tests, added CHANGELOG.md, changed plugin initialization, updated compatibility to be WP 4.9-5.3+ updated copyright date (2020), and much more. See changelog for potential breaking change to a filter.
