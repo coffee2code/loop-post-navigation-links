@@ -10,7 +10,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Template tags (for single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
  *
- * Compatible with WordPress 4.9 through 5.4.
+ * Compatible with WordPress 4.9 through 5.5.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
