@@ -228,7 +228,7 @@ function c2c_get_adjacent_or_loop_post_link( $format, $link, $in_same_term = fal
 		$date = mysql2date( get_option( 'date_format' ), $post->post_date );
 		$rel = $previous ? 'prev' : 'next';
 
-		$string = '<a href="' . get_permalink( $post ) . '" rel="' . $rel . '">';
+		$string = '<a href="' . esc_url( get_permalink( $post ) ) . '" rel="' . $rel . '">';
 		$inlink = str_replace( '%title', $title, $link );
 		$inlink = str_replace( '%date', $date, $inlink );
 		$inlink = $string . $inlink . '</a>';
