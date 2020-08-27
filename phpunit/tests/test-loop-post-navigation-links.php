@@ -133,6 +133,26 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_filter( 'get_previous_post_where', array( 'c2c_LoopPostNavigationLinks', 'modify_nextprevious_post_where' ) ) );
 	}
 
+	/*
+	 * modify_nextprevious_post_where()
+	 */
+
+	public function test_modify_nextprevious_post_where_when_not_looping() {
+		c2c_LoopPostNavigationLinks::$loop_navigation_find = false;
+
+		$expected = 'WHERE 1=1 AND 2=2';
+
+		$this->assertEquals( $expected, c2c_LoopPostNavigationLinks::modify_nextprevious_post_where( $expected ) );
+	}
+
+	public function test_modify_nextprevious_post_where_when_looping() {
+		c2c_LoopPostNavigationLinks::$loop_navigation_find = true;
+
+		$expected = 'WHERE 1=1 AND 2=2';
+
+		$this->assertEquals( 'WHERE 2=2', c2c_LoopPostNavigationLinks::modify_nextprevious_post_where( 'WHERE 1=1 AND 2=2' ) );
+	}
+
 	public function test_c2c_next_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 1 ), $this->get_echo_output( 0 ) );
 		$this->assertEquals( $this->expected( 2 ), $this->get_echo_output( 1 ) );
