@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 
 Template tags (for use in single.php) to create post navigation loop (previous to first post is last post; next/after last post is first post).
 
@@ -153,6 +153,26 @@ Do:
 
 == Changelog ==
 
+= 3.0.2 (2020-08-26) =
+Highlights:
+
+This minor update has some minor tweaks that should go unnoticed, restructures unit test file structure, adds a TODO.md file, and notes compatibility through WP 5.5+.
+
+Details:
+
+* Change: Unset loop flag in class just after it's used to ensure it gets reset
+* Change: Escape URL for post before being output in link (hardening)
+* Change: Restructure unit test file structure
+    * New: Create new subdirectory `phpunit/` to house all files related to unit testing
+    * Change: Move `bin/` to `phpunit/bin/`
+    * Change: Move `tests/bootstrap.php` to `phpunit/`
+    * Change: Move `tests/` to `phpunit/tests/`
+    * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
+* Change: Note compatibility through WP 5.5+
+* Unit tests:
+    * New: Add test for hook registrations
+    * New: Add tests for `modify_nextprevious_post_where()`
+
 = 3.0.1 (2020-05-10) =
 * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests
 * Change: Note compatibility through WP 5.4+
@@ -201,20 +221,13 @@ Details:
 * Change: Update copyright date (2020)
 * Change: Update installation instruction to prefer built-in installer over .zip file
 
-= 2.6.1 (2016-03-10) =
-* New: Add support for language packs:
-    * Define 'Text Domain' header attribute.
-    * Load textdomain.
-* New: Add LICENSE file.
-* New: Create empty index.php to prevent files from being listed if web server has enabled directory listings.
-* Change: Note compatibility through WP 4.4+.
-* Change: Explicitly declare methods in unit tests as public.
-* Change: Update copyright date (2016).
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/loop-post-navigation-links/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 3.0.2 =
+Trivial update:minor tweaks that should go unnoticed, restructured unit test file structure, added a TODO.md file, and noted compatibility through WP 5.5+.
 
 = 3.0.1 =
 Trivial update: Updated a few URLs to be HTTPS and noted compatibility through WP 5.4+.

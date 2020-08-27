@@ -1,6 +1,6 @@
 # Changelog
 
-## _(in-progress)_
+## 3.0.2 _(2020-08-26)_
 * Change: Unset loop flag in class just after it's used to ensure it gets reset
 * Change: Escape URL for post before being output in link (hardening)
 * Change: Restructure unit test file structure
