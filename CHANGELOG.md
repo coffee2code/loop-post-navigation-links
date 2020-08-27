@@ -10,6 +10,8 @@
     * Change: Move `tests/` to `phpunit/tests/`
     * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
 * Change: Note compatibility through WP 5.5+
+* Unit tests:
+    * New: Add test for hook registrations
 
 ## 3.0.1 _(2020-05-10)_
 * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests

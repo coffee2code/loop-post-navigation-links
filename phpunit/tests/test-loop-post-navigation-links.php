@@ -128,6 +128,11 @@ class Link_Post_Navigation_Links_Test extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( 'c2c_LoopPostNavigationLinks', 'init' ) ) );
 	}
 
+	public function test_registers_hooks() {
+		$this->assertEquals( 10, has_filter( 'get_next_post_where',     array( 'c2c_LoopPostNavigationLinks', 'modify_nextprevious_post_where' ) ) );
+		$this->assertEquals( 10, has_filter( 'get_previous_post_where', array( 'c2c_LoopPostNavigationLinks', 'modify_nextprevious_post_where' ) ) );
+	}
+
 	public function test_c2c_next_or_loop_post_link() {
 		$this->assertEquals( $this->expected( 1 ), $this->get_echo_output( 0 ) );
 		$this->assertEquals( $this->expected( 2 ), $this->get_echo_output( 1 ) );
