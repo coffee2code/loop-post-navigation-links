@@ -14,5 +14,6 @@ The following list comprises ideas, suggestions, and known issues, all of which 
 * Add examples of how to style the nav
   See https://wordpress.org/support/topic/how-to-css-style-it-all/
 * Add more unit tests
+* Delete long-deprecated functions `next_or_loop_post_link()`, `previous_or_loop_post_link()`, `adjacent_or_loop_post_link()`
 
 Feel free to make your own suggestions or champion for something already on the list (via the [plugin's support forum on WordPress.org](https://wordpress.org/support/plugin/loop-post-navigation-links/) or on [GitHub](https://github.com/coffee2code/loop-post-navigation-links/) as an issue or PR).
