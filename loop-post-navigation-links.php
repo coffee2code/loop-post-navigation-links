@@ -92,6 +92,7 @@ class c2c_LoopPostNavigationLinks {
 		// others.
 		if ( self::$loop_navigation_find ) {
 			$where = preg_replace( '/WHERE (.+) AND/imsU', 'WHERE', $where );
+			c2c_LoopPostNavigationLinks::$loop_navigation_find = false;
 		}
 
 		return $where;
@@ -359,7 +360,6 @@ function c2c_get_adjacent_or_loop_post( $in_same_term = false, $excluded_terms =
 	if ( ! $post ) {
 		c2c_LoopPostNavigationLinks::$loop_navigation_find = true;
 		$post = get_adjacent_post( $in_same_term, $excluded_terms, $previous, $taxonomy );
-		c2c_LoopPostNavigationLinks::$loop_navigation_find = false;
 		// Don't loop to itself.
 		if ( $post == get_post() ) {
 			$post = null;
